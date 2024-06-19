@@ -993,3 +993,11 @@ testem.log
 .DS_Store
 Thumbs.db
 .angular
+.browserslistrc
+.editorconfig
+angular.json
+karma.conf.js
+package-lock.json
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json
