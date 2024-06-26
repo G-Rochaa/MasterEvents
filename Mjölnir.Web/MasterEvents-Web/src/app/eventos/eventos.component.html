@@ -1,8 +1,54 @@
-<h1>Eventos do Component</h1>
-
-
-<div *ngFor="let evento of eventos"> 
-    <p><b>Tema:</b>{{evento.tema}}</p>
-    <p><b>Local:</b>{{evento.local}}</p>
-    <hr>
+<h2>Eventos</h2>
+<hr>
+<div class="form-inline">
+    <div class="form-group mb-2">
+        <label class="mr-2">Filter:</label>
+        <input type="text" class="form-control mr-2" placeholder="Search" [(ngModel)]="filtroLista">
+    </div>
 </div>
+<!-- <h3>Filter: {{filtroLista}} </h3> -->
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                <button type="button" class="btn btn-outline-light btn-sm" (click)="alterarEstadoImagem()">
+                    {{!showImage ? 'Show' : 'Hide'}}
+                </button>
+            </th>
+            <th>#</th>
+            <th>Theme</th>
+            <th>Place</th>
+            <th>Date</th>
+            <th>Number of Persons</th>
+            <th>Batch</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="eventos && eventos.length">
+        <tr *ngFor="let evento of eventosFiltrados">
+            <td>
+                <img [collapse]="!showImage" [isAnimated]="true" src="/assets/{{evento.imageUrl}}"
+                    [style.width.px]="widthImg" [style.margin.px]="marginImg">
+            </td>
+            <td>{{evento.eventoId}}</td>
+            <td>{{evento.tema}}</td>
+            <td>{{evento.local}}</td>
+            <td>{{evento.dataEvento}}</td>
+            <td>{{evento.qtdPessoas}}</td>
+            <td>{{evento.lote}}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm mr-2">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot *ngIf="!eventos.length">
+        <tr>
+            <td colspan="8" class="text-center">
+                <h4>No event found</h4>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<!-- {{eventos | json}} -->

@@ -1001,3 +1001,8 @@ package-lock.json
 tsconfig.app.json
 tsconfig.json
 tsconfig.spec.json
+
+# Excluindo Db
+*.db
+*.db-shm
+*.db-wal
