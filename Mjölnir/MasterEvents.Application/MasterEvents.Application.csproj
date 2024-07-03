@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MasterEvents.Domain\MasterEvents.Domain.csproj" />
+		<ProjectReference Include="..\MasterEvents.Persistence\MasterEvents.Persistence.csproj" />
+
+	</ItemGroup>
+</Project>

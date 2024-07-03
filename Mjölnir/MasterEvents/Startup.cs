@@ -1,4 +1,8 @@
-using MasterEvents.Data;
+using MasterEvents.Application;
+using MasterEvents.Application.Interfaces;
+using MasterEvents.Persistence.Context;
+using MasterEvents.Persistence.Interfaces;
+using MasterEvents.Persistence.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace MasterEvents
+namespace MasterEvents.API
 {
     public class Startup
     {
@@ -21,11 +25,19 @@ namespace MasterEvents
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(
+            services.AddDbContext<MasterEventsContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralRepository, GeralRepository>();
+            services.AddScoped<IEventoRepository, EventoRepository>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

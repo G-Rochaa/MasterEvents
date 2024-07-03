@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IRepository\Repository\**" />
+    <Compile Remove="Migrations\**" />
+    <EmbeddedResource Remove="IRepository\Repository\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="IRepository\Repository\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
+	 <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
+
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MasterEvents.Domain\MasterEvents.Domain.csproj" />
+	</ItemGroup>
+
+</Project>
